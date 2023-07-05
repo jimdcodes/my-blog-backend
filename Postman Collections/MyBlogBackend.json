@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Testing Server",
+			"name": "Get Request",
 			"id": "a103132f-03ac-4775-9d5d-371d431ac9ac",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
