@@ -31,7 +31,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Put Upvotes",
 			"id": "11108f9f-7f6f-4ea0-8a54-29f0ea95e7cd",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
