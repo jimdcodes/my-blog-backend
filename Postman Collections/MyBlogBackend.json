@@ -27,6 +27,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postedBy\": \"Jimmy\",\r\n    \"text\": \"Awesome article!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": "http://localhost:8000/api/articles/learn-react/comments"
 			},
 			"response": []
