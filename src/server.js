@@ -28,7 +28,7 @@ app.put('/api/articles/:name/upvote', (req, res) => {
     const article = articlesInfo.find(a => a.name === name);
     if (article) {
         article.upvotes += 1;
-        res.send(`The ${name} article has ${article.upvotes} upvotes`);
+        res.send(`The ${name} article has ${article.upvotes} upvotes!!!`);
     } else {
         res.send('That article doesn\'t exist')
     }
