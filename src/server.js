@@ -3,12 +3,15 @@ import express from 'express';
 let articlesInfo = [{
     name: 'learn-react',
     upvotes: 0,
+    comments: [],
 }, {
     name: 'learn-node',
     upvotes: 0,
+    comments: [],
 }, {
     name: 'learn-mongodb',
     upvotes: 0,
+    comments: [],
 }]
 
 const app = express();
@@ -33,6 +36,8 @@ app.put('/api/articles/:name/upvote', (req, res) => {
         res.send('That article doesn\'t exist')
     }
 });
+
+
 
 app.listen(8000, () => {
     console.log('Server is listening on port 8000');
