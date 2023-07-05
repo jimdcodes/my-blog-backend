@@ -19,14 +19,24 @@
 			"response": []
 		},
 		{
-			"name": "Post Request",
+			"name": "Post Comment",
 			"id": "b08757eb-95dd-4c4b-965b-e1814b50dcd6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postedBy\": \"Jimmy\",\r\n    \"text\": \"Awesome article!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/articles/learn-react/comments"
 			},
 			"response": []
 		},
