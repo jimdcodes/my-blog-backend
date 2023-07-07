@@ -47,8 +47,9 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8000/api/articles/learn-react/upvote"
 			},
 			"response": []
 		}
