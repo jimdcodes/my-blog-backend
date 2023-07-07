@@ -14,7 +14,16 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8000/hello"
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/articles/learn-react"
 			},
 			"response": []
 		},
@@ -47,8 +56,9 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8000/api/articles/learn-react/upvote"
 			},
 			"response": []
 		}
