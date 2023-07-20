@@ -1,3 +1,5 @@
+import fs from 'fs';
+import admin from 'firebase-admin';
 import express from 'express';
 import { db, connectToDb } from './db.js';
 
@@ -16,6 +18,13 @@ import { db, connectToDb } from './db.js';
 // }]
 
 //[{ name: 'learn-react', upvotes: 0, comments: [], }, { name: 'learn-node', upvotes: 0, comments: [], }, { name: 'learn-mongodb', upvotes: 0, comments: [], }]
+
+const credentials = JSON.parse(
+    fs.readFileSync('../credentials.json')
+);
+admin.initializeApp({
+    credential: admin.credential.cert(credentials),
+});
 
 const app = express();
 app.use(express.json());
