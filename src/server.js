@@ -61,6 +61,15 @@ app.get('/api/articles/:name', async (req, res) => {
     }    
 });
 
+//Prevents user from making requests to either of the endpoints if not logged in
+app.use((req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.sendStatus(401);
+    }
+});
+
 // Adding upvotes capability to the server
 app.put('/api/articles/:name/upvote', async (req, res) => {
     const { name } = req.params; 
