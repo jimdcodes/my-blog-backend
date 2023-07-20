@@ -19,6 +19,7 @@ import { db, connectToDb } from './db.js';
 
 //[{ name: 'learn-react', upvotes: 0, comments: [], }, { name: 'learn-node', upvotes: 0, comments: [], }, { name: 'learn-mongodb', upvotes: 0, comments: [], }]
 
+//Connecting to Firebase with Auth
 const credentials = JSON.parse(
     fs.readFileSync('../credentials.json')
 );
@@ -29,16 +30,34 @@ admin.initializeApp({
 const app = express();
 app.use(express.json());
 
+//Loading user automatically using the Auth token
+app.use(async (req, res, next) => {
+    const { authtoken } = req.headers;
+
+    if (authtoken) {
+        try {
+            req.user = await admin.auth().verifyIdToken(authtoken);
+        } catch (e) {
+            res.sendStatus(400);
+        }
+    }
+
+    next();
+});
+
 //Allowing us to read information from MongoDB
 app.get('/api/articles/:name', async (req, res) => {
     const { name } = req.params;
+    const { uid } = req.user;
 
     const article = await db.collection('articles').findOne({ name });
 
-    if(article) {
+    if (article) {
+        const upvoteIds = article.upvoteIds || [];
+        article.canUpvote = uid && !upvoteIds.include(uid);
         res.json(article);
     } else {
-        res.sendStatus(404).send('Poopoo');
+        res.sendStatus(404);
     }    
 });
 
