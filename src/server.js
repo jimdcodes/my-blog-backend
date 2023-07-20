@@ -38,9 +38,11 @@ app.use(async (req, res, next) => {
         try {
             req.user = await admin.auth().verifyIdToken(authtoken);
         } catch (e) {
-            res.sendStatus(400);
+            return res.sendStatus(400);
         }
     }
+
+    req.user = req.user || {};
 
     next();
 });
