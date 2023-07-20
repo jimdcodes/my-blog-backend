@@ -21,7 +21,7 @@ import { db, connectToDb } from './db.js';
 
 //Connecting to Firebase with Auth
 const credentials = JSON.parse(
-    fs.readFileSync('../credentials.json')
+    fs.readFileSync('./credentials.json')
 );
 admin.initializeApp({
     credential: admin.credential.cert(credentials),
