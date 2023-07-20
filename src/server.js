@@ -72,16 +72,24 @@ app.use((req, res, next) => {
 
 // Adding upvotes capability to the server
 app.put('/api/articles/:name/upvote', async (req, res) => {
-    const { name } = req.params; 
+    const { name } = req.params;
+    const { uid } = req.user;
 
-    await db.collection('articles').updateOne({ name }, {
-        $inc: { upvotes: 1 },
-    });
     const article = await db.collection('articles').findOne({ name });
 
     if (article) {
-        // res.send(`The ${name} article has ${article.upvotes} upvote(s)!`);
-        res.json(article);
+        const upvoteIds = article.upvoteIds || [];
+        const canUpvote = uid && !upvoteIds.include(uid);
+
+        if (canUpvote) {
+            await db.collection('articles').updateOne({ name }, {
+                $inc: { upvotes: 1 },
+                $push: { upvoteIds: uid },
+            });
+        }
+
+        const updatedArticle = await db.collection('articles').findOne({ name });
+        res.json(updatedArticle);
     } else {
         res.send('That article doesn\'t exist')
     }
