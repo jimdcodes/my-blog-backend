@@ -2,4 +2,6 @@ node_modules
 mongo-db-data
 build
 credentials.json
+prod-env.yaml
+app.yaml
 .env
