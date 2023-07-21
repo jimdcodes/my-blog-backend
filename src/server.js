@@ -3,6 +3,12 @@ import admin from 'firebase-admin';
 import express from 'express';
 import { db, connectToDb } from './db.js';
 
+//Allow usage of __dirname since it is not module
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // let articlesInfo = [{
 //     name: 'learn-react',
 //     upvotes: 0,
@@ -29,6 +35,13 @@ admin.initializeApp({
 
 const app = express();
 app.use(express.json());
+
+//Incorporating a static build folder
+app.use(express.static(path.join(__dirname, '../build')));
+//Handle all routes that doesn't start with api
+app.get(/^(?!\/api).+/, (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 //Loading user automatically using the Auth token
 app.use(async (req, res, next) => {
