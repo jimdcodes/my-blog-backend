@@ -1,6 +1,7 @@
 import fs from 'fs';
 import admin from 'firebase-admin';
 import express from 'express';
+import 'dotenv/config';
 import { db, connectToDb } from './db.js';
 
 //Allow usage of __dirname since it is not module
