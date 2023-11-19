@@ -5,3 +5,6 @@ credentials.json
 prod-env.yaml
 app.yaml
 .env
+.github
+.firebase
+.*
